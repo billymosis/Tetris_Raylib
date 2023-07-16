@@ -3,6 +3,8 @@
 #include "raylib.h"
 #include <random>
 
+extern const int CELL_OFFSET_VALUE;
+
 Game::Game() {
   grid = Grid();
   blocks = GetAllBlocks();
@@ -10,6 +12,18 @@ Game::Game() {
   nextBlock = GetRandomBlock();
   gameOver = false;
   score = 0;
+  InitAudioDevice();
+  music = LoadMusicStream("sounds/music.mp3");
+  PlayMusicStream(music);
+  rotateSound = LoadSound("sounds/rotate.mp3");
+  clearSound = LoadSound("sounds/clear.mp3");
+}
+
+Game::~Game() {
+  UnloadMusicStream(music);
+  UnloadSound(rotateSound);
+  UnloadSound(clearSound);
+  CloseAudioDevice();
 }
 
 Block Game::GetRandomBlock() {
@@ -28,7 +42,18 @@ std::vector<Block> Game::GetAllBlocks() {
 
 void Game::Draw() {
   grid.Draw();
-  currentBlock.Draw();
+  currentBlock.Draw(CELL_OFFSET_VALUE, CELL_OFFSET_VALUE);
+  switch (nextBlock.id) {
+  case 3:
+    nextBlock.Draw(255, 290);
+    break;
+  case 4:
+    nextBlock.Draw(255, 280);
+    break;
+  default:
+    nextBlock.Draw(270, 270);
+    break;
+  }
 }
 
 void Game::HandleInput() {
@@ -90,6 +115,8 @@ void Game::RotateBlock() {
   currentBlock.Rotate();
   if (isBlockOutside() || BlockFits() == false) {
     currentBlock.UndoRotation();
+  } else {
+    PlaySound(rotateSound);
   }
 }
 
@@ -114,7 +141,10 @@ void Game::LockBlock() {
   }
   nextBlock = GetRandomBlock();
   int rowsCleared = grid.ClearFullRows();
-  UpdateScore(rowsCleared, 0);
+  if (rowsCleared > 0) {
+    PlaySound(clearSound);
+    UpdateScore(rowsCleared, 0);
+  }
 }
 
 bool Game::BlockFits() {
