@@ -12,6 +12,8 @@ public:
   std::vector<Position> GetCellPositions();
   void Draw();
   void Move(int rows, int columns);
+  void Rotate();
+  void UndoRotation();
 
 private:
   int cellSize;
