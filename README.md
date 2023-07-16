@@ -1,3 +1,12 @@
+# Personal Note
+
+If it's developed using neovim and clangd LSP not detect anything do:
+- use bear
+    1. sudo apt-get install bear
+    2. bear -- make
+- if some library not found
+    1. sudo apt install g++-12 [clang++ cannot find iostream](https://askubuntu.com/questions/1449769/clang-cannot-find-iostream)
+
 # Raylib C++ Starter
 The Raylib C++ Starter kit is a template project that provides a simple starter template for the [raylib](https://github.com/raysan5/raylib) game tools library incorporating the [raylib-cpp](https://github.com/robloach/raylib-cpp) C++ bindings and using [Make](https://www.gnu.org/software/make/) for building. The starter kit can automatcially clone down raylib and the bindings, compile them, and setup the project for separate compilation using a static library.
 
