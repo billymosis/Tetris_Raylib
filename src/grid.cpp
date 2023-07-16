@@ -2,6 +2,8 @@
 #include "colors.h"
 #include <iostream>
 
+extern const int CELL_OFFSET_VALUE;
+
 Grid::Grid() {
   numRows = 20;
   numCols = 10;
@@ -31,7 +33,8 @@ void Grid::Draw() {
   for (int row = 0; row < numRows; row++) {
     for (int column = 0; column < numCols; column++) {
       int cellValue = grid[row][column];
-      DrawRectangle(column * cellSize + 1, row * cellSize + 1, cellSize - 1,
+      DrawRectangle(column * cellSize + CELL_OFFSET_VALUE,
+                    row * cellSize + CELL_OFFSET_VALUE, cellSize - 1,
                     cellSize - 1, colors[cellValue]);
     }
   }
@@ -79,8 +82,7 @@ int Grid::ClearFullRows() {
     if (isRowFull(row)) {
       ClearRow(row);
       completed++;
-    }
-    else if(completed > 0) {
+    } else if (completed > 0) {
       MoveRowDown(row, completed);
     }
   }

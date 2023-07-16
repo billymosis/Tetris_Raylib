@@ -1,5 +1,7 @@
 #include "block.h"
 
+extern const int CELL_OFFSET_VALUE;
+
 Block::Block() {
   cellSize = 30;
   rotationState = 0;
@@ -11,7 +13,7 @@ Block::Block() {
 void Block::Draw() {
   std::vector<Position> tiles = GetCellPositions();
   for (Position item : tiles) {
-    DrawRectangle(item.column * cellSize + 1, item.row * cellSize + 1,
+    DrawRectangle(item.column * cellSize + CELL_OFFSET_VALUE, item.row * cellSize + CELL_OFFSET_VALUE,
                   cellSize - 1, cellSize - 1, colors[id]);
   }
 }
