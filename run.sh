@@ -1,3 +1,4 @@
 #!/bin/bash
 
-alacritty -e make &
+make bin/app
+alacritty -e make execute &
