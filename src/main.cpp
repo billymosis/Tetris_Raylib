@@ -1,30 +1,24 @@
-#include <raylib-cpp.hpp>
+#include "blocks.cpp"
+#include "grid.h"
+#include <raylib.h>
 
 int main() {
-
-  // Initialization
-  int screenWidth = 800;
-  int screenHeight = 450;
-
-  raylib::Color textColor(LIGHTGRAY);
-  raylib::Window w(screenWidth, screenHeight, "Raylib C++ Starter Kit Example");
-
+  Color darkBlue = {44, 44, 127, 255};
+  InitWindow(300, 600, "raylib Tetris");
   SetTargetFPS(60);
 
-  // Main game loop
-  while (!w.ShouldClose()) // Detect window close button or ESC key
-  {
-    // Update
+  Grid grid = Grid();
+  grid.Print();
 
-    // TODO: Update your variables here
+  TBlock block = TBlock();
 
-    // Draw
+  while (WindowShouldClose() == false) {
     BeginDrawing();
-    ClearBackground(RAYWHITE);
-    textColor.DrawText("Congrats! You created your first window!", 190, 200,
-                       20);
+    ClearBackground(darkBlue);
+    grid.Draw();
+    block.Draw();
+
     EndDrawing();
   }
-
-  return 0;
+  CloseWindow();
 }
