@@ -1,7 +1,4 @@
 #include "block.h"
-#include "colors.h"
-#include "raylib.h"
-#include <vector>
 
 Block::Block() {
   cellSize = 30;
@@ -27,8 +24,9 @@ void Block::Move(int rows, int columns) {
 std::vector<Position> Block::GetCellPositions() {
   std::vector<Position> tiles = cells[rotationState];
   std::vector<Position> movedTiles;
-  for(Position item: tiles) {
-    Position newPos = Position(item.row + rowOffset, item.column + columnOffset);
+  for (Position item : tiles) {
+    Position newPos =
+        Position(item.row + rowOffset, item.column + columnOffset);
     movedTiles.push_back(newPos);
   }
   return movedTiles;
