@@ -10,7 +10,7 @@ int main() {
   Grid grid = Grid();
   grid.Print();
 
-  TBlock block = TBlock();
+  IBlock block = IBlock();
 
   while (WindowShouldClose() == false) {
     BeginDrawing();
