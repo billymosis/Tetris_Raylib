@@ -1,4 +1,5 @@
 #include "game.h"
+#include <iostream>
 #include <raylib.h>
 
 double lastUpdateTime = 0;
@@ -19,11 +20,13 @@ int main() {
 
   Game game = Game();
 
-  while (WindowShouldClose() == false) {
+  while (!WindowShouldClose()) {
     game.HandleInput();
-    if (EventTriggered(0.2)) {
+    if (EventTriggered(0.02)) {
       game.MoveBlockDown();
     }
+    std::cout << game.gameOver;
+    std::cout << std::endl;
     BeginDrawing();
     ClearBackground(darkBlue);
     game.Draw();

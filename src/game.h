@@ -14,6 +14,7 @@ public:
   void MoveBlockLeft();
   void MoveBlockRight();
   void MoveBlockDown();
+  bool gameOver;
 
 private:
   std::vector<Block> blocks;
@@ -23,4 +24,5 @@ private:
   bool isBlockOutside();
   void LockBlock();
   bool BlockFits();
+  void Reset();
 };
