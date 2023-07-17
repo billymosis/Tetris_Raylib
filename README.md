@@ -9,6 +9,7 @@ If it's developed using neovim and clangd LSP not detect anything do:
 - if some library not found
     - sudo apt install g++-12 [clang++ cannot find iostream](https://askubuntu.com/questions/1449769/clang-cannot-find-iostream)
 
+![Tetris Screenshot](screenshot/tetris.png)
 ## Tips
 
 add this mapping to neovim config to fast run from neovim
